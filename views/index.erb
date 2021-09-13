@@ -2,7 +2,7 @@
 <table class="table table-striped table-hover pulls_table">
   <thead>
     <tr>
-      <th>Approved by me</th>
+      <th>Reviewed by me</th>
       <th>Title</th>
       <th>Changes</th>
       <th>Labels</th>
@@ -12,7 +12,7 @@
     <% pulls.each do |pull| %>
       <tr>
         <td>
-          <% if pull.approved_by_me? %>
+          <% if pull.reviewed_by_me? %>
             <span class="material-icons approved">check_circle</span>
           <% else %>
             <span class="material-icons not_reviewed">cancel</span>

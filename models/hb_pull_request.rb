@@ -23,7 +23,7 @@ class HbPullRequest
     html_url
   end
 
-  def approved_by_me?
+  def reviewed_by_me?
     !! @reviews.find { |review| review.user.login == username }
   end
 
