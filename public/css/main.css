@@ -1,0 +1,36 @@
+.pulls_table {
+  text-align: center;
+}
+
+.pulls_table.tr {
+  padding: 5px 0;
+}
+
+.left_aligned {
+  text-align: left;
+}
+
+.label {
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.additions {
+  color: green;
+}
+
+.deletions {
+  color: red;
+}
+
+.approved {
+  color: green;
+}
+
+.not_reviewed {
+  color: red;
+}
+
+.open_in_new {
+  font-size: 15px !important;
+}

@@ -1,0 +1,31 @@
+<h3>Homebase Opended Pull Requests (<%= pulls.count %>)</h3>
+<table class="table table-striped table-hover pulls_table">
+  <thead>
+    <tr>
+      <th>Approved by me</th>
+      <th>Title</th>
+      <th>Changes</th>
+      <th>Labels</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% pulls.each do |pull| %>
+      <tr>
+        <td>
+          <% if pull.approved_by_me? %>
+            <span class="material-icons approved">check_circle</span>
+          <% else %>
+            <span class="material-icons not_reviewed">cancel</span>
+          <% end %>
+        </td>
+        <td><a href="<%= pull.url %>" target="_blank"><%= pull.title %><span class="material-icons open_in_new">open_in_new</span></a></td>
+        <td><%= pull.changes %> (<span class="additions">+<%= pull.additions %></span> <span class="deletions">-<%= pull.deletions %></span>)</td>
+        <td>
+          <% pull.labels.each do |label| %>
+            <span class="label" style="<%= "background-color: ##{label.color}" %>"><%= label.name %></span>&nbsp;
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>  
+</table>
