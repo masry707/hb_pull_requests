@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'octokit'
 require 'pry-remote'
 require 'dotenv'
@@ -47,7 +49,7 @@ end
 def sorted(pulls)
   grouped = pulls.group_by { |pull| pull.labels_list.include?(grouping_label) }
   grouped
-    .each { |key, values| grouped[key] = values.sort_by { |pull| pull.changes } }
+    .each { |key, values| grouped[key] = values.sort_by(&:changes) }
     .values.flatten
 end
 
