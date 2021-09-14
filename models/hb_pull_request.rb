@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HbPullRequest
   attr_accessor :reviews
 
@@ -8,11 +10,11 @@ class HbPullRequest
   end
 
   def additions
-    @files.map { |f| f.additions }.sum
+    @files.map(&:additions).sum
   end
 
   def deletions
-    @files.map { |f| f.deletions }.sum
+    @files.map(&:deletions).sum
   end
 
   def changes
@@ -24,7 +26,7 @@ class HbPullRequest
   end
 
   def reviewed_by_me?
-    !! @reviews.find { |review| review.user.login == username }
+    !!@reviews.find { |review| review.user.login == username }
   end
 
   def labels_list

@@ -50,3 +50,7 @@ def sorted(pulls)
     .each { |key, values| grouped[key] = values.sort_by { |pull| pull.changes } }
     .values.flatten
 end
+
+def reviewed_by_me_count(pulls)
+  pulls.select(&:reviewed_by_me?).count
+end
