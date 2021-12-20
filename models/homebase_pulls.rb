@@ -18,18 +18,17 @@ def access_token
 end
 
 def grouping_label
-  @label ||= ENV['GROUPING_LAEBL']
+  @grouping_label ||= ENV['GROUPING_LABEL']
 end
 
 def configure_client
-  @client ||= Octokit::Client.new(access_token: access_token)
+  @configure_client ||= Octokit::Client.new(access_token: access_token)
 end
 
 def hb_pulls
   load_env
-  configure_client
 
-  all_pulls = @client.pull_requests(repo, state: 'open', per_page: 50)
+  all_pulls = configure_client.pull_requests(repo, state: 'open', per_page: 50)
   all_pulls.map do |pull|
     reviews = pull_reviews(pull)
     files = pull_files(pull)
@@ -39,11 +38,11 @@ def hb_pulls
 end
 
 def pull_files(pull)
-  @client.pull_request_files(repo, pull.number)
+  configure_client.pull_request_files(repo, pull.number)
 end
 
 def pull_reviews(pull)
-  @client.pull_request_reviews(repo, pull.number)
+  configure_client.pull_request_reviews(repo, pull.number)
 end
 
 def sorted(pulls)

@@ -40,6 +40,6 @@ class HbPullRequest
   end
 
   def username
-    username ||= ENV['GITHUB_USERNAME']
+    ENV['GITHUB_USERNAME']
   end
 end
