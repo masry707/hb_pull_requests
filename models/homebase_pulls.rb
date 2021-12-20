@@ -21,6 +21,10 @@ def grouping_label
   @grouping_label ||= ENV['GROUPING_LABEL']
 end
 
+def diff_limit
+  @diff_limit ||= ENV['DIFF_LIMIT'].to_i
+end
+
 def configure_client
   @configure_client ||= Octokit::Client.new(access_token: access_token)
 end
@@ -54,4 +58,8 @@ end
 
 def reviewed_by_me_count(pulls)
   pulls.select(&:reviewed_by_me?).count
+end
+
+def reached_diff_limit?(pulls)
+  pulls.any? { |pr| !pr.reviewed_by_me? && pr.changes <= diff_limit }
 end

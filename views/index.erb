@@ -29,3 +29,11 @@
     <% end %>
   </tbody>  
 </table>
+
+<script>
+  $(document).ready(() => {
+    if (<%= @reached_diff_limit %>) {
+      alert('There are PRs need your review');
+    }
+  });
+</script>
